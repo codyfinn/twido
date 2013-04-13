@@ -1,0 +1,3 @@
+lib/twido.rb 9265994e230205ec7111f5eba829684a0cf0bf9d
+lib/twido/version.rb 3ba561459ff8bc792fb0e8cb897f26521da01efe
+lib/twido/authentication.rb dff8040e207577148b9821b1e0ccd752896f90ef

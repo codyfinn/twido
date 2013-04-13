@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+# Copyright 2012 Cody Finn
+# This file is part of Twido.
+# 
+# Twido is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# Twido is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with Twido.  If not, see <http://www.gnu.org/licenses/>.
+
+require 'optparse'
+require 'methadone'
+require 'twido'
+
+class App
+  include Methadone::Main
+  include Methadone::CLILogging
+
+  main do |action|
+    case action.downcase.to_sym
+    when :list, :l
+      Twido.list
+    when :complete, :c
+      Twido.complete
+    when :setup, :s
+      Twido.setup
+    when :task, :t
+      Twido.task
+    else
+      puts "ERROR: ACTION NOT RECONIZED"
+    end
+  end
+
+  # supplemental methods here
+
+  # Declare command-line interface here
+
+  # description "one line description of your app"
+  #
+  # Accept flags via:
+  # on("--flag VAL","Some flag")
+  # options[flag] will contain VAL
+  #
+  # Specify switches via:
+  # on("--[no-]switch","Some switch")
+  #
+  # Or, just call OptionParser methods on opts
+  #
+  # Require an argument
+  arg :action, "(setup|list|add|complete)" 
+  #
+  # # Make an argument optional
+  # arg :optional_arg, :optional
+
+  version Twido::VERSION
+
+  use_log_level_option
+
+  go!
+end
