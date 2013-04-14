@@ -18,6 +18,7 @@ require "twido/version"
 require "twitter"
 require "twido/authentication"
 require "highline/import"
+require "yaml"
 
 module Twido
   # Public: authenticates the user using the authenticate method of the Authentication module
