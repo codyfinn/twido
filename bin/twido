@@ -34,6 +34,8 @@ class App
       Twido.setup
     when :task, :t
       Twido.task
+    when :group, :g
+      Twido.group
     else
       puts "ERROR: ACTION NOT RECONIZED"
     end

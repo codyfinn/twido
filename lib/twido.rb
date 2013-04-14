@@ -147,4 +147,11 @@ module Twido
     user = twitter_client.user.screen_name
     twitter_client.search("#todo", count: count, from:user).statuses
   end
+  
+  def self.group(count = 20)
+    twitter_client = Authentication.authenticate
+    group_name = ask("Enter group name: ") + "_todo"
+    tweets = twitter_client.search(group_name, count: count).statuses
+    tweets.each_with_index { |tweet, index| puts "[#{index}] #{tweet.text}" }
+  end 
 end
