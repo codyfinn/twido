@@ -137,7 +137,7 @@ module Twido
     twitter_client.update(task)
   end
 
-  # Private: Gets a lsit of tweets with hash tag #todo
+  # Private: Gets a list of tweets with "#todo"
   # Retruns Array of tweets
   # Examples
   # self.build_list
