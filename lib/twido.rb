@@ -137,7 +137,7 @@ module Twido
     twitter_client.update(task)
   end
 
-  # Rrivate: Gets a lsit of tweets with hash tag #todo
+  # Private: Gets a lsit of tweets with hash tag #todo
   # Retruns Array of tweets
   # Examples
   # self.build_list
