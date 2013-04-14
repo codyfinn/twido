@@ -86,15 +86,7 @@ module Twido
     user = twitter_client.user.screen_name
     tweets = twitter_client.search("#todo", :count => 10, from:user).statuses
     tweets.each_with_index { |tweet, index| puts "[#{index}] #{tweet.text}" }
-    run_complete = ask("Did you complete a task?: ")
-      case run_complete.downcase.to_sym
-      when :yes, :y
-        self.complete
-      when :no, :n
-        puts "Have a good and productive day!"
-      else
-        puts "ERROR: ACTION NOT RECONIZED"
-    end
+    
   end
   
   # Public: removes a task from the user's to do list by deleting the tweet and confirming
