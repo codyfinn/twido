@@ -137,7 +137,7 @@ module Twido
     twitter_client.update(task)
   end
 
-  # private: Gets a lsit of tweets with hash tag #todo
+  # Rrivate: Gets a lsit of tweets with hash tag #todo
   # Retruns Array of tweets
   # Examples
   # self.build_list
@@ -148,6 +148,11 @@ module Twido
     twitter_client.search("#todo", count: count, from:user).statuses
   end
   
+  # Public: Gets list of tweets with the hash tag #"group"_todo
+  # Returns Array of tweets
+  # Examples
+  # self.group
+  #   #=> [tweet1, tweet2,...]
   def self.group(count = 20)
     twitter_client = Authentication.authenticate
     group_name = ask("Enter group name: ") + "_todo"
