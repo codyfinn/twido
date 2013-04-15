@@ -108,7 +108,6 @@ module Twido
   #                 Have a good and productive day!
   def self.complete
     twitter_client = Authentication.authenticate
-    user = twitter_client.user.screen_name
     tweets = self.build_list
     self.list
     complete_index = ask("Enter task ID: ")
@@ -159,4 +158,63 @@ module Twido
     tweets = twitter_client.search(group_name, count: count).statuses
     tweets.each_with_index { |tweet, index| puts "[#{index}] #{tweet.text}" }
   end 
+  
+  # Public: removes a task from the specified group's to do list by deleting the tweet and confirming authorship
+  # Returns a string stating if task was completed or not
+  # Examples
+  #
+  #   self.group_complete
+  #     # => [0] Task #todo
+  #          [1] Task2 #todo
+  #          Enter task ID:
+  #           1
+  #             Are you sure you completed this task?:
+  #               y
+  #                 TASK COMPLETED
+  #   self.group_complete
+  #     # => [0] Task #todo
+  #          [1] Task2 #todo
+  #          Enter task ID:
+  #           0
+  #             Are you sure you completed this task?:
+  #               n
+  #                 Have a good and productive day!
+  def self.group_complete
+    twitter_client = Authentication.authenticate
+    tweets = self.group
+    complete_index = ask("Enter task ID: ")
+    complete = Integer(complete_index)
+    tweet_id = tweets[complete].id
+    author = twitter_client.status(tweet_id,{"trim_user" => true})
+    user = twitter_client.user
+    confirm = ask("Are you sure you completed this task?: ")
+    case confirm.downcase.to_sym
+    when :no, :n
+      puts "Have a good and productive day!"
+    when :yes, :y
+    confirm = ask("Is this your tweet?: ")
+    case confirm.downcase.to_sym
+    when :yes, :y  
+      twitter_client.status_destroy(tweet_id)
+      puts "TASK COMPLETED"
+    when :no, :n
+        twitter_client.update(" Task completed please delete task", {"in_reply_to_status_id" => tweet_id})
+      end
+    end
+  end
+  
+  # Public: adds a task to the specified group's todo list by tweeting a tweet that the user defines and automaticly adds the "#group_name_todo" to the end
+  # Returns nil
+  # Examples
+  #
+  #   self.group_task
+  #     # => What do you have to do?:
+  #       task
+  def self.group_task
+    twitter_client = Authentication.authenticate
+    group_name = ask("Enter group name: ") + "_todo"
+    task = ask("What do you have to do?: ") + " #" + group_name
+    twitter_client.update(task)
+  end
+    
 end

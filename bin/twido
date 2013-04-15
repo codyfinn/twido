@@ -36,6 +36,10 @@ class App
       Twido.task
     when :group, :g
       Twido.group
+    when :group_complete, :gc
+      Twido.group_complete
+    when :group_task, :gt
+      Twido.group_task
     else
       puts "ERROR: ACTION NOT RECONIZED"
     end
