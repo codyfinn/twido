@@ -15,5 +15,5 @@
 # along with Twido.  If not, see <http://www.gnu.org/licenses/>.
 
 module Twido
-  VERSION = "0.0.1.beta"
+  VERSION = "0.0.1"
 end
