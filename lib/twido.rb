@@ -216,5 +216,48 @@ module Twido
     task = ask("What do you have to do?: ") + " #" + group_name
     twitter_client.update(task)
   end
+  
+  # Public: Gives the user a list of commands that can be used with Twido
+  # Returns nil
+  # Examples
+  #
+  #   self.help
+  #     # => To use Twido first type "twido setup" and follow the steps
+  #   The following are commands:
+      
+  #   list, l: lists your personal todo list
+      
+  #   complete, c: lets you complete a given task
+      
+  #   task, t: lets you add a new task to your todo list
+      
+  #   group, g: lists a specified group's todo list
+      
+  #   group_complete, gc: lets you complete a group task or mark it as completed
+      
+  #   group_task: lests you add a new task to a specifed group's todo list
+  # MESSAGE
+ 
+  def self.help
+    message = <<-MESSAGE
+      To use Twido first type "twido setup" and follow the steps
+      The following are commands:
+      
+      list, l: lists your personal todo list
+      
+      complete, c: lets you complete a given task
+      
+      task, t: lets you add a new task to your todo list
+      
+      group, g: lists a specified group's todo list
+      
+      group_complete, gc: lets you complete a group task or mark it as completed
+      
+      group_task: lests you add a new task to a specifed group's todo list
+   MESSAGE
+   
+   puts message
+ end 
+    
     
 end

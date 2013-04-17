@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    twido (0.0.1.beta)
+    twido (0.0.1)
       highline (~> 1.6.15)
       methadone (~> 1.2.3)
       twitter (~> 4.4.1)
